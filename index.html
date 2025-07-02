@@ -1,143 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cynex Crypto Card Waitlist</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cynex Crypto Card - Waitlist Form</title>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #0f0f0f;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
     }
 
-    .container {
-      background: #1a1a1a;
-      padding: 30px;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .form-step {
-      display: none;
-      flex-direction: column;
-    }
-
-    .form-step.active {
+    body {
+      height: 100vh;
+      font-family: Arial, sans-serif;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: #0f2027;  /* fallback */
+      background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+      overflow: hidden;
     }
 
-    input, select {
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      font-size: 1em;
+    /* 🟢 Shimmering Glow Border */
+    .glow-border {
+      padding: 3px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #00ffe7, #8effff, #00ffe7);
+      background-size: 200% 200%;
+      animation: glow 4s ease infinite;
+    }
+
+    @keyframes glow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .form-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 4px 25px rgba(0, 255, 255, 0.2);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      color: #052b47;
+      margin-bottom: 10px;
+    }
+
+    .form-container p {
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
     }
 
     button {
-      padding: 10px;
-      background: #00ffae;
-      color: black;
-      font-weight: bold;
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      background-color: #0a9468;
       border: none;
-      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background: #00cc8a;
+      background-color: #087655;
+    }
+
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icons a img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons a img:hover {
+      transform: scale(1.2);
+    }
+
+    .top-label {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #0a9468;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .top-left-card {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: white;
+      border-radius: 10px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-weight: bold;
+      color: #0a9468;
+      font-size: 15px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2>Join the Cynex Waitlist</h2>
+  <!-- 🔳 Top-left Card -->
+  <div class="top-left-card">🚀 Cynex Card</div>
 
-    <form id="waitlistForm">
+  <!-- 🔲 Top-right Label -->
+  <div class="top-label">Cynex-Waitlist</div>
 
-      <!-- Step 1 -->
-      <div class="form-step active">
-        <label>Enter your EVM Address:</label>
-        <input type="text" name="evm" required>
-        <button type="button" onclick="nextStep()">Next</button>
-      </div>
+  <!-- 🔮 Glowing Shimmer Effect -->
+  <div class="glow-border">
+    <div class="form-container">
+      <h2>Cynex Crypto Card Waitlist</h2>
+      <p>Join the waitlist and be among the first to access the Cynex Crypto Card when it launches!</p>
 
-      <!-- Step 2 -->
-      <div class="form-step">
-        <label>Enter your X (Twitter) Handle:</label>
-        <input type="text" name="xhandle" required>
-        <button type="button" onclick="nextStep()">Next</button>
-      </div>
+      <form id="waitlist-form">
+        <label for="evm">Your EVM Address:</label>
+        <input type="text" id="evm" name="evm" required>
 
-      <!-- Step 3 -->
-      <div class="form-step">
-        <label>Enter your Telegram Username:</label>
-        <input type="text" name="telegram" required>
-        <button type="button" onclick="nextStep()">Next</button>
-      </div>
+        <label for="xhandle">X Handle (Twitter):</label>
+        <input type="text" id="xhandle" name="xhandle" required>
 
-      <!-- Step 4 -->
-      <div class="form-step">
-        <label>Select your Country:</label>
-        <input type="text" name="country" required>
-        <button type="button" onclick="nextStep()">Next</button>
-      </div>
+        <label for="telegram">Telegram Username:</label>
+        <input type="text" id="telegram" name="telegram" required>
 
-      <!-- Step 5 -->
-      <div class="form-step">
-        <label>Enter your Phone Number:</label>
-        <input type="tel" name="tel" required>
-        <button type="button" onclick="nextStep()">Next</button>
-      </div>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required>
 
-      <!-- Step 6 -->
-      <div class="form-step">
-        <label>Enter Refer Code (if any):</label>
-        <input type="text" name="ref" placeholder="Optional">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="referral">Referral Code:</label>
+        <input type="text" id="referral" name="referral">
+
         <button type="submit">Submit</button>
-      </div>
-
-    </form>
+      </form>
+    </div>
   </div>
 
-  <script>
-    const steps = document.querySelectorAll(".form-step");
-    let currentStep = 0;
-
-    function nextStep() {
-      steps[currentStep].classList.remove("active");
-      currentStep++;
-      steps[currentStep].classList.add("active");
-    }
-
-    document.getElementById("waitlistForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      const data = {};
-      formData.forEach((value, key) => data[key] = value);
-      console.log("Submitted Data:", data);
-      alert("🎉 Thank you! You've been added to the waitlist.");
-      this.reset();
-      steps[currentStep].classList.remove("active");
-      currentStep = 0;
-      steps[currentStep].classList.add("active");
-    });
-  </script>
+  <!-- 📱 Social Media Icons -->
+  <div class="social-icons">
+    <a href="https://twitter.com/YourHandle" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/3670/3670151.png" alt="Twitter">
+    </a>
+    <a href="https://t.me/YourTelegramGroup" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+    </a>
+    <a href="https://discord.gg/YourInviteLink" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
+    </a>
+  </div>
 
 </body>
 </html>
